@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+    <h2>Employee dashboard</h1>
+    <hr>
     <div class="row mt-1">
         <table class="table">
             <thead>

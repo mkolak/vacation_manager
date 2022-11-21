@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\VacationAlreadyResponded;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -53,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'vacationResponded' => VacationAlreadyResponded::class,
         'isEmployee' => \App\Http\Middleware\EmployeeCheck::class,
         'isApprover' => \App\Http\Middleware\ApproverCheck::class,
         'isAdmin' => \App\Http\Middleware\AdminCheck::class,

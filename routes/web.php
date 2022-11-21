@@ -49,6 +49,10 @@ Route::group([
     'middleware' => ['auth', 'isApprover']
 ], function () {
     Route::get('/dashboard', [ApproverController::class, 'dashboard']);
+    Route::get('/employee/{employee}', [ApproverController::class, 'employee']);
+    Route::get("/employee/{employee}/{vacationRequest}", [ApproverController::class, 'employeeRequest']);
+
+    Route::post('/request/{vacationRequest}/respond', [ApproverController::class, 'vacationResponse'])->middleware('vacationResponded:vacationRequest');
 });
 
 // Routes accessible to administrators
@@ -57,4 +61,15 @@ Route::group([
     'middleware' => ['auth', 'isAdmin']
 ], function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/users/register', [AdminController::class, 'registerUser']);
+    Route::post('/users', [UserController::class, 'store']);
+
+    Route::get('/employee/{employee}', [AdminController::class, 'employee']);
+    Route::get("/employee/{employee}/{vacationRequest}", [AdminController::class, 'employeeRequest']);
+
+
+    Route::get('/approver/{approver}', [AdminController::class, 'approver']);
+
+    // Route::get('/teams/register', [AdminController::class, 'registerTeam']);
+    // Route::post('/teams', [TeamController::class, 'store']);
 });

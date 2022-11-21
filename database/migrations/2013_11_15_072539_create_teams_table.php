@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_active');
             $table->timestamps();
             $table->softDeletes();
         });

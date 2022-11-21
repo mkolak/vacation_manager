@@ -19,6 +19,10 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->longText('message')->nullable();
+            $table->string('team_leader_status')->nullable();
+            $table->string('team_leader_message')->nullable();
+            $table->string('project_leader_status')->nullable();
+            $table->string('project_leader_message')->nullable();
             $table->string('status')->default('pending');
             $table->integer('vacation_days');
             $table->timestamps();

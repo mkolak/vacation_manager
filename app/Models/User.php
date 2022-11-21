@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
         'team_id',
-        'team_role',
+        'approver_role',
         'remaining_vacation_days'
     ];
 

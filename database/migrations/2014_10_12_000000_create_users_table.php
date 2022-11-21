@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->string('role');
             $table->foreignId('team_id')->nullable()->constrained();
-            $table->string('team_role')->nullable();
+            $table->string('approver_role')->nullable();
             $table->integer('remaining_vacation_days')->nullable();
 
             $table->rememberToken();

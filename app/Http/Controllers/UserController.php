@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -35,5 +37,13 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login')->with('message', 'logged out succesfully');
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        $formFields = $request->validated();
+
+        User::create($formFields);
+        return redirect('/admin/dashboard');
     }
 }

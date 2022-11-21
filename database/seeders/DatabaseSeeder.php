@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,13 +17,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Team::factory(5)->create();
+        \App\Models\User::factory(25)->create();
+
+        foreach (Team::pluck('id') as $value) {
+            User::create([
+                'name' => fake()->name(),
+                'email' => fake()->unique()->safeEmail(),
+                'password' => bcrypt("password"),
+                'role' => 'approver',
+                'approver_role' => 'team_leader',
+                'team_id' => $value,
+            ]);
+
+            User::create([
+                'name' => fake()->name(),
+                'email' => fake()->unique()->safeEmail(),
+                'password' => bcrypt("password"),
+                'role' => 'approver',
+                'approver_role' => 'project_leader',
+                'team_id' => $value,
+            ]);
+        }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
         User::create([
             'name' => "Matej",
             'email' => "matej@email.com",

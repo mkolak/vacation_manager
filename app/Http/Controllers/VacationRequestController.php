@@ -16,7 +16,7 @@ class VacationRequestController extends Controller
         }
 
         return view('requests.show', [
-            'vacation' => $vacationRequest
+            'vacation' => $vacationRequest,
         ]);
     }
 
